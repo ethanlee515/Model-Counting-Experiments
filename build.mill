@@ -1,0 +1,13 @@
+import mill._
+import mill.scalalib._
+
+object Rtl extends ScalaModule {
+  def scalaVersion = "2.11.12"
+
+  override def mvnDeps = Seq(
+    mvn"com.github.spinalhdl::spinalhdl-core:1.13.0",
+    mvn"com.github.spinalhdl::spinalhdl-lib:1.13.0"
+  )
+
+  override def scalacPluginMvnDeps = Seq(mvn"com.github.spinalhdl::spinalhdl-idsl-plugin:1.13.0")
+}
