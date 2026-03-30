@@ -1,4 +1,5 @@
 out/
+*.v
 *.class
 *.log
 
