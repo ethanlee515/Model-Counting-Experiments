@@ -1,6 +1,6 @@
 out/
 *.v
-*.aig
+*.aag
 *.cnf
 *.map
 *.class

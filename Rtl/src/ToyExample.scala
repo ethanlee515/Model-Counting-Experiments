@@ -20,6 +20,6 @@ class ToyExample(grid_width: Int, error_count: Int) extends Component {
   add_to_count := is_logical_error & error_count_correct
 }
 
-object ToyVerilog extends App {
+object ToyExample extends App {
   SpinalVerilog(new ToyExample(5, 3))
 }
