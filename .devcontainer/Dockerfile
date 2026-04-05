@@ -11,5 +11,12 @@ RUN tar xvf oss-cad-suite-*.tgz
 RUN rm oss-cad-suite-*.tgz
 ENV PATH="/opt/oss-cad-suite/bin:${PATH}"
 
+RUN mkdir -p /opt/approxmc
+WORKDIR /opt/approxmc
+RUN wget https://github.com/meelgroup/approxmc/releases/download/release%2Fv4.3.0/approxmc-v4.3.0-linux-amd64.tar.gz
+RUN tar -xf approxmc-v4.3.0-linux-amd64.tar.gz
+RUN rm approxmc-*.tar.gz
+ENV PATH="/opt/approxmc:${PATH}"
+
 # Stop Verilator from complaining
 ENV LC_ALL=C.UTF-8

@@ -70,7 +70,6 @@ def strip_port_map_lines(lines: list[str]) -> list[str]:
 def build_processed_cnf_text(
     cnf_path: Path,
     projection_vars: list[int],
-    one_show_per_line: bool = True,   # default behavior
 ) -> str:
     original_lines = cnf_path.read_text().splitlines()
 
@@ -81,12 +80,8 @@ def build_processed_cnf_text(
     out_lines.append("c t pmc")
     out_lines.extend(cleaned_lines)
 
-    if one_show_per_line:
-        for var in projection_vars:
-            out_lines.append(f"c p show {var} 0")
-    else:
-        joined = " ".join(str(v) for v in projection_vars)
-        out_lines.append(f"c p show {joined} 0")
+    joined = " ".join(str(v) for v in projection_vars)
+    out_lines.append(f"c p show {joined} 0")
 
     return "\n".join(out_lines) + "\n"
 
@@ -103,11 +98,6 @@ def main() -> None:
         type=Path,
         required=True,
         help="Output processed CNF file",
-    )
-    parser.add_argument(
-        "--single-show-line",
-        action="store_true",
-        help="Emit one combined 'c p show v1 v2 ... 0' line instead of one variable per line",
     )
     parser.add_argument(
         "--no-assert-even-inputs",
@@ -137,16 +127,13 @@ def main() -> None:
 
     processed_text = build_processed_cnf_text(
         args.cnf,
-        projection_vars,
-        one_show_per_line=not args.single_show_line,
+        projection_vars
     )
     args.output.write_text(processed_text)
 
     print(f"Wrote: {args.output}")
     print(f"AAG input literals: {input_literals}")
     print(f"Projection CNF vars: {projection_vars}")
-    print(f"Show format: {'one variable per line' if not args.single_show_line else 'single combined line'}")
-
 
 if __name__ == "__main__":
     main()
