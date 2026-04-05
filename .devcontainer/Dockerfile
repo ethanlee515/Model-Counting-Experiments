@@ -3,6 +3,7 @@ FROM debian:bookworm
 RUN apt-get update
 RUN apt-get install -y git git-lfs
 RUN apt-get install -y wget tar curl openjdk-17-jdk make g++
+RUN apt-get install -y python3
 
 WORKDIR /opt
 RUN wget https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2026-03-30/oss-cad-suite-linux-x64-20260330.tgz

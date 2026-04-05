@@ -13,5 +13,8 @@
 %.cnf: %.aag
 	aigtocnf -m $*.aag $*.cnf
 
+%.pmc.cnf: %.cnf
+	python3 process_cnf.py $*.aag $*.cnf -o $*.pmc.cnf
+
 clean:
 	rm -f *.v *.aag *.cnf

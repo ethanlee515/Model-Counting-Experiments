@@ -21,5 +21,5 @@ class ToyExample(grid_width: Int, error_count: Int) extends Component {
 }
 
 object ToyExample extends App {
-  SpinalVerilog(new ToyExample(5, 3))
+  SpinalVerilog(new ToyExample(3, 2))
 }
